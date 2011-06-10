@@ -7,16 +7,20 @@
 //
 
 #import "CalculatorGraphAppDelegate.h"
+#import "CalculatorViewController.h"
+
 
 @implementation CalculatorGraphAppDelegate
 
 
-@synthesize window=_window;
+@synthesize window;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    [self.window makeKeyAndVisible];
+    UINavigationController *navcon = [[UINavigationController alloc] init];
+    
+    [window makeKeyAndVisible];
     return YES;
 }
 
@@ -61,7 +65,7 @@
 
 - (void)dealloc
 {
-    [_window release];
+    [window release];
     [super dealloc];
 }
 
