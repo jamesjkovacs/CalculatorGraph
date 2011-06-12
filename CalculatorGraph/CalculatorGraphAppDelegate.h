@@ -2,7 +2,7 @@
 //  CalculatorGraphAppDelegate.h
 //  CalculatorGraph
 //
-//  Created by James Kovacs on 6/10/11.
+//  Created by James Kovacs on 6/10/11. 
 //  Copyright 2011 AmanoMcGann. All rights reserved.
 //
 
