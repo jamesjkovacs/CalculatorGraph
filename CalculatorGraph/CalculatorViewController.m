@@ -7,6 +7,8 @@
 //
 
 #import "CalculatorViewController.h"
+#import "GraphViewController.h"
+
 
 @interface CalculatorViewController()
 //@property (readonly) CalculatorBrain *brain;
@@ -95,6 +97,14 @@
     if(![[[[CalculatorBrain descriptionOfExpression:brain.expression] componentsSeparatedByString:@" "] lastObject]isEqualToString: @"="])
     	[brain performOperation:@"="];    
     display.text = [NSString stringWithFormat:@"%@ %g", [CalculatorBrain descriptionOfExpression:brain.expression],result];
+}
+
+- (IBAction)graphPressed:(UIButton *)sender
+{
+    GraphViewController *gvc = [[GraphViewController alloc] init];
+    gvc.title = [NSString stringWithFormat:@"Graph of"];
+    [self.navigationController pushViewController:gvc animated:YES];
+    [gvc release];
 }
 
 - (void) viewDidUnLoad

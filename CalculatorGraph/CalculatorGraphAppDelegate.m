@@ -19,6 +19,10 @@
 {
     // Override point for customization after application launch.
     UINavigationController *navcon = [[UINavigationController alloc] init];
+    CalculatorViewController *cvc = [[CalculatorViewController alloc] init];
+    [navcon pushViewController:cvc animated:NO];
+    [cvc release];
+    [window addSubview:navcon.view];
     
     [window makeKeyAndVisible];
     return YES;

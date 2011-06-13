@@ -20,6 +20,7 @@
 - (IBAction)digitPressed:(UIButton *)sender;
 - (IBAction)operationPressed:(UIButton *)sender;
 - (IBAction)solvePressed:(UIButton *)sender;
+- (IBAction)graphPressed:(UIButton *)sender;
 
 @end
 
