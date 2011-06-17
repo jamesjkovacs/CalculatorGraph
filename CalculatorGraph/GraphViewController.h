@@ -10,15 +10,26 @@
 #import "GraphView.h"
 
 
-@interface GraphViewController : UIViewController {
+@interface GraphViewController : UIViewController <GraphViewDelegate>
+{
     GraphView *graphView;
-    
+    float graphScale;
+    NSMutableArray *graphExpression;
+    bool graphUseLines;
+    bool graphUsePixels;
 }
 
 - (IBAction) zoomIn;
 - (IBAction) zoomOut;
+- (IBAction) useLines;
+- (IBAction) usePoints;
+- (IBAction) usePixelsSwitch: (UISwitch *)sender;
 
 @property (retain) IBOutlet GraphView *graphView;
+@property float graphScale;
+@property bool graphUsePixels;
+@property bool graphUseLines;
+@property (assign) NSMutableArray *graphExpression;
 
 
 @end

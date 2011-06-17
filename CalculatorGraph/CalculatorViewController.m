@@ -102,7 +102,9 @@
 - (IBAction)graphPressed:(UIButton *)sender
 {
     GraphViewController *gvc = [[GraphViewController alloc] init];
-    gvc.title = [NSString stringWithFormat:@"Graph of"];
+    gvc.title = [NSString stringWithFormat:@"Graph of: %@",[CalculatorBrain descriptionOfExpression:brain.expression]];
+    gvc.graphExpression = brain.expression;
+    [gvc.graphExpression retain];
     [self.navigationController pushViewController:gvc animated:YES];
     [gvc release];
 }
@@ -110,6 +112,13 @@
 - (void) viewDidUnLoad
 {
     self.display = nil;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    // Return YES for supported orientations
+    //    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return YES;
 }
 
 // Release our model. 
