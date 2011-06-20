@@ -20,6 +20,7 @@
     // Override point for customization after application launch.
     UINavigationController *navcon = [[UINavigationController alloc] init];
     CalculatorViewController *cvc = [[CalculatorViewController alloc] init];
+    cvc.title = [NSString stringWithFormat:@"Calculator"];
     [navcon pushViewController:cvc animated:NO];
     [cvc release];
     [window addSubview:navcon.view];
