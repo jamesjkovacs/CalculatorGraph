@@ -8,10 +8,13 @@
 
 #import "CalculatorBrain.h"
 
+@interface CalculatorBrain()
+@property (retain) NSString *waitingOperation;
+@end
 
 @implementation CalculatorBrain
 
-@synthesize operand;
+@synthesize operand, waitingOperation;
 
 /*
  * Class Method - returns copy of propertylist passed since user does not know that
@@ -202,7 +205,7 @@
     [self addToExpression:variableName];
     operand = 0;
     waitingOperand = 0;
-    [waitingOperation release];
+    //[waitingOperation release];// don't need anymore because using @property (retain) now which autoreleases.
     waitingOperation = nil;
     variableJustAdded = YES;
 }
@@ -253,8 +256,8 @@
     } else if ([operation isEqual:@"C"]) {
         operand = 0;
         waitingOperand = 0;
-        [waitingOperation release];
-        waitingOperation = nil;
+        //[waitingOperation release];// don't need anymore because using @property (retain) now which auto releases
+        self.waitingOperation = nil;
         [internalExpression release];
         internalExpression = [[NSMutableArray alloc]init];
         variableJustAdded = NO;
@@ -273,9 +276,9 @@
         if (![CalculatorBrain variablesInExpression:[self expression]])
         {
             [self performWaitingOperation];
-            [waitingOperation release];
-            waitingOperation = operation;
-            [operation retain];
+            //[waitingOperation release];  // don't need anymore because using @property (retain) now which autoreleases.
+            self.waitingOperation = operation;
+            //[operation retain];    // don't need anymore because using @property (retain) now which autoreleases.
             waitingOperand = operand;
         }
         if(!variableJustAdded)
@@ -292,6 +295,7 @@
 - (void)dealloc
 {
     [internalExpression release];
+    [waitingOperation release];
     [super dealloc];
 }
 

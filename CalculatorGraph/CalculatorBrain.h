@@ -13,7 +13,7 @@
 @interface CalculatorBrain : NSObject {
 @private
 	double operand;
-	NSString *waitingOperation;
+	NSMutableString *waitingOperation;
 	double waitingOperand;
     NSMutableArray *internalExpression;
     bool variableJustAdded;
@@ -21,6 +21,8 @@
 
 @property double operand;
 @property (readonly) id expression;
+
+
 - (void)setVariableAsOperand:(NSString *)variableName;
 - (double)performOperation:(NSString *)operation;
 
