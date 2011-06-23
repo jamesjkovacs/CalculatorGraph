@@ -48,7 +48,8 @@
     NSMutableSet *variables = [NSMutableSet set];
     for(id obj in anExpression)
     {
-        if([obj isKindOfClass:[NSString class]] && [obj length] > 1)
+//        if([obj isKindOfClass:[NSString class]] && [obj length] > 1)
+        if([obj isKindOfClass:[NSString class]] && [(NSString *)obj  characterAtIndex:0] == '%')
         {
            if(![variables member:obj])
                [variables addObject:obj];
@@ -164,6 +165,7 @@
 {
     [super init];
     variableJustAdded = NO;
+    internalExpression = [[NSMutableArray alloc]init];
     return self;
 }
 
@@ -187,8 +189,8 @@
 */
 - (void)addToExpression:(id)anEntry
 {
-    if(!internalExpression)
-        internalExpression = [[NSMutableArray alloc]init];
+//    if(!internalExpression)
+//        internalExpression = [[NSMutableArray alloc]init];
     [internalExpression addObject:(id)anEntry];
 //    NSLog(@"expression = %@", internalExpression);
 }
@@ -249,7 +251,7 @@
     } else if ([operation isEqual:@"1/x"]) {
         operand = 1/operand;
     } else if ([operation isEqual:@"sin"]) {
-        operand = sin(operand * M_PI / 180);
+        operand = sin(operand);
     } else if ([operation isEqual:@"cos"]) {
         //operand = cos(operand * M_PI / 180);
         operand = cos(operand);        
@@ -258,8 +260,9 @@
         waitingOperand = 0;
         //[waitingOperation release];// don't need anymore because using @property (retain) now which auto releases
         self.waitingOperation = nil;
-        [internalExpression release];
-        internalExpression = [[NSMutableArray alloc]init];
+//        [internalExpression release];
+//        internalExpression = [[NSMutableArray alloc]init];
+        [internalExpression removeAllObjects];
         variableJustAdded = NO;
     } else if ([operation isEqual:@"Store"]) {
 //		numberMemory = operand;
